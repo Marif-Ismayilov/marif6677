@@ -10944,55 +10944,53 @@ textarea.form-control-lg {
     </div>
     <script>
     let enlarge = document.querySelector('.enlarge');
-      let decrease = document.querySelector('.decrease');
-      let lorem = document.querySelector('.lorem');
-      
-      let currentFontSize = parseInt(lorem.style.fontSize);
-      
-      enlarge.addEventListener('click', function () {
-          currentFontSize++;
-          lorem.style.fontSize = currentFontSize + "px";
-      });
-      
-      decrease.addEventListener('click', function () {
-          currentFontSize--;
-          lorem.style.fontSize = currentFontSize + "px";
-      });                                                 // 17-ci setre kimi fikir verme
-      
-      let addCity = document.querySelector('.submit')
-      let form = document.querySelector('.form');
-      let row = document.querySelector('.row');
-      let ul = document.querySelector('.ul');             // her ehtimala qarsi 4 eded queryselector
-      
-      addCity.addEventListener('click', function () {
-          
-          let li = document.createElement('li');          // click edende li yarat
-          let text = document.getElementById('fname');    // boxu gotur
-          let title = text.value;                         // boxun valuesini gotur
-          li.innerText = title;                           // goturduyum valueni li-nin textine elave et
-          li.classList.add('d-flex','w-75','city')        // li-ye class verdim
-      
-          let icon = document.createElement('button');    // her li ucun delete buttonu yaratdim
-          icon.innerText = 'Sil';                      
-          icon.classList.add('delete-icon');              
-          
-          if(title != ''){                      // formun ici bos olanda consola yazi cixartdim bos olmayanda li-ni ve delete buttonu yaratdim
-              ul.prepend(li);
-              li.append(icon);
-          }
-          else{
-              console.log('Seher adi daxil edin');
-              return;
-          }
-          
-          let deleteBtn = document.querySelector('.delete-icon');     
-          deleteBtn.addEventListener('click', function(){ 
-              this.parentNode.remove();
-                                                  // MESELE BURDADI, 35-ci bendi append ve ya appendChild et ve 1-den cox seher adi daxil et yoxla
-          });                                     // umumiyyetle test ucun 1 ve sonra 1-den cox seher adi daxil et (guya meslehet verdim)
-         
-      });
-      
+let decrease = document.querySelector('.decrease');
+let lorem = document.querySelector('.lorem');
+
+let currentFontSize = parseInt(lorem.style.fontSize);
+
+enlarge.addEventListener('click', function () {
+    currentFontSize++;
+    lorem.style.fontSize = currentFontSize + "px";
+});
+
+decrease.addEventListener('click', function () {
+    currentFontSize--;
+    lorem.style.fontSize = currentFontSize + "px";
+});                                                 // 17-ci setre kimi fikir verme
+
+let addCity = document.querySelector('.submit')
+let form = document.querySelector('.form');
+let row = document.querySelector('.row');
+let ul = document.querySelector('.ul');             // her ehtimala qarsi 4 eded queryselector
+
+addCity.addEventListener('click', function () {
+    
+    let li = document.createElement('li');          
+    let text = document.getElementById('fname');   
+    let title = text.value;                         
+    li.innerText = title;                           
+    li.classList.add('d-flex','w-75','city','list-group-item')        
+
+    let deleteBtn = document.createElement('button');    // her li ucun delete buttonu yaratdim
+    deleteBtn.classList.add('delete-icon');   
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.addEventListener('click', function(){ 
+        this.parentNode.remove();           
+    }); 
+
+    if(!title){      
+        alert('Seher adi daxil edin');
+        return;                
+        
+    }
+    else{
+        ul.append(li);
+        li.append(deleteBtn);
+    }
+});
+
+
       </script>
 </body>
 </html>
